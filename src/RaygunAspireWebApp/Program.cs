@@ -26,7 +26,7 @@ namespace RaygunAspireWebApp
       if (!string.IsNullOrWhiteSpace(connectionString))
       {
         var modelName = builder.Configuration["Ollama:Model"] ?? Constants.AiModel;
-        builder.Services.Add(new ServiceDescriptor(typeof(IOllamaApiClient), new OllamaApiClient(connectionString, modelName)));
+        builder.Services.Add(new ServiceDescriptor(typeof(IOllamaApiClient), new OllamaApiClient(connectionString.Replace("Endpoint=", string.Empty), modelName)));
       }
 
       var app = builder.Build();
